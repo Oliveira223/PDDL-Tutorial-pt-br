@@ -13,17 +13,6 @@ Este curso está organizado como uma trilha progressiva:
 - Lógica proposicional básica ajuda, mas não é obrigatória.
 - Para a parte de Python: familiaridade com terminal e ambiente virtual (venv) ajuda.
 
-## Site estático (GitHub Pages)
-Este repositório agora inclui uma versão de site estático na pasta `docs/`.
-
-Para publicar no GitHub Pages:
-1. Vá em **Settings > Pages** no repositório.
-2. Em **Build and deployment**, selecione **Deploy from a branch**.
-3. Em **Branch**, escolha `main` (ou sua branch padrão) e a pasta `/docs`.
-4. Salve e aguarde a publicação.
-
-O site gera um sumário lateral de aulas e carrega cada nota Markdown como uma aula individual.
-
 ## Como estudar (ordem sugerida)
 
 ### Trilha principal (PDDL básico)
