@@ -162,7 +162,7 @@ for pr in problems:
 
 3) Especifique como você adaptaria o `runner` para um planner real: quais argumentos o comando precisaria receber?
 
-### Gabarito sugerido (autoavaliação)
+### Gabarito sugerido
 1) Espera-se iterar sobre `problems/*.pddl` e chamar `run_and_save`.  
 2) Use `Path.read_text`/`write_text` ou `shutil.copy2` para copiar o arquivo do problema.  
 3) Em geral, domínio e problema entram como argumentos do comando; alguns planners exigem flags adicionais e um caminho de saída do plano.

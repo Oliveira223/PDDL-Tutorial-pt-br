@@ -140,7 +140,7 @@ write_problem(chain_problem(5), "problems")
 
 3) Adicione uma validação para impedir que o problema tenha arestas duplicadas.
 
-### Gabarito sugerido (autoavaliação)
+### Gabarito sugerido
 1) Espera-se um `chain_problem(6)` e `write_problem(..., "problems")`.  
 2) Ao criar `edges`, adicione também o reverso `(b, a)` para cada `(a, b)` ou gere ambos diretamente.  
 3) Use um `set` de arestas normalizadas e verifique repetição antes de aceitar.

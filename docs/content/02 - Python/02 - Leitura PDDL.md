@@ -157,7 +157,7 @@ Limitação: isso não lida perfeitamente com expressões aninhadas complexas. N
 
 3) Proponha uma validação simples adicional que Python pode fazer sem “entender” o PDDL por completo.
 
-### Gabarito sugerido (autoavaliação)
+### Gabarito sugerido
 1) Espera-se que você compare o nome do domínio do arquivo com o `:domain` do problema e gere erro quando divergir.  
 2) Deve listar fatos como `(em robo A)` e conexões do tipo `(conectada A B)`.  
 3) Exemplos: verificar parênteses balanceados; verificar presença de `:init` e `:goal`; verificar que `domain.pddl` e `problem.pddl` existem.

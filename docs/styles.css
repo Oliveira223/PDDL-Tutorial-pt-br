@@ -7,6 +7,47 @@
   --line: #2a303b;
   --accent: #71d0b3;
   --accent-2: #7ea2ff;
+  --link-hover-bg: #202530;
+  --link-hover-border: #353d4b;
+  --link-active-bg: #1f2e32;
+  --link-active-border: #2f6f61;
+  --link-active-ink: #b4f3de;
+  --code-bg: #0f131a;
+  --code-ink: #d9dfeb;
+  --code-border: #2b3340;
+  --code-scroll-thumb: #3a4353;
+  --code-scroll-thumb-hover: #4b576b;
+  --code-inline-bg: #232a36;
+  --code-inline-border: #344051;
+  --blockquote-border: #486089;
+  --blockquote-bg: #151b25;
+  --blockquote-ink: #c4d0e6;
+}
+
+body.light-theme {
+  --bg: #f5f7fb;
+  --panel: #eef2f8;
+  --panel-2: #e5ebf5;
+  --ink: #1e2530;
+  --muted: #566276;
+  --line: #c9d2e2;
+  --accent: #0f7461;
+  --accent-2: #365ecf;
+  --link-hover-bg: #e7edf8;
+  --link-hover-border: #bcc8de;
+  --link-active-bg: #d9efe9;
+  --link-active-border: #84b8ab;
+  --link-active-ink: #0d564a;
+  --code-bg: #f0f4fb;
+  --code-ink: #233046;
+  --code-border: #c6d2e9;
+  --code-scroll-thumb: #95a7c8;
+  --code-scroll-thumb-hover: #7f95bc;
+  --code-inline-bg: #e3ebf9;
+  --code-inline-border: #bed0ef;
+  --blockquote-border: #738fc6;
+  --blockquote-bg: #eaf0fb;
+  --blockquote-ink: #334c7a;
 }
 
 * {
@@ -68,6 +109,19 @@ body {
   cursor: pointer;
 }
 
+.theme-toggle {
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
 .topbar {
   position: fixed;
   top: 0;
@@ -83,6 +137,10 @@ body {
 }
 
 .topbar .menu-toggle {
+  justify-self: center;
+}
+
+.topbar .theme-toggle {
   justify-self: center;
 }
 
@@ -114,7 +172,7 @@ body {
   border-right: 1px solid var(--line);
   background: var(--panel);
   transition: transform 0.2s ease;
-  scrollbar-color: #3a4353 #141820;
+  scrollbar-color: var(--code-scroll-thumb) var(--panel);
   scrollbar-width: thin;
 }
 
@@ -123,16 +181,16 @@ body {
 }
 
 .sidebar::-webkit-scrollbar-track {
-  background: #141820;
+  background: var(--panel);
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: #3a4353;
-  border: 2px solid #141820;
+  background: var(--code-scroll-thumb);
+  border: 2px solid var(--panel);
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
-  background: #4b576b;
+  background: var(--code-scroll-thumb-hover);
 }
 
 .sidebar-inner {
@@ -176,14 +234,14 @@ body {
 }
 
 .lesson-link:hover {
-  background: #202530;
-  border-color: #353d4b;
+  background: var(--link-hover-bg);
+  border-color: var(--link-hover-border);
 }
 
 .lesson-link.active {
-  background: #1f2e32;
-  border-color: #2f6f61;
-  color: #b4f3de;
+  background: var(--link-active-bg);
+  border-color: var(--link-active-border);
+  color: var(--link-active-ink);
 }
 
 .content {
@@ -245,11 +303,31 @@ body {
 
 .lesson-content pre {
   overflow: auto;
-  background: #0f131a;
-  color: #d9dfeb;
+  background: var(--code-bg);
+  color: var(--code-ink);
   padding: 14px;
   border-radius: 10px;
-  border: 1px solid #2b3340;
+  border: 1px solid var(--code-border);
+  scrollbar-color: var(--code-scroll-thumb) var(--code-bg);
+  scrollbar-width: thin;
+}
+
+.lesson-content pre::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+.lesson-content pre::-webkit-scrollbar-track {
+  background: var(--code-bg);
+}
+
+.lesson-content pre::-webkit-scrollbar-thumb {
+  background: var(--code-scroll-thumb);
+  border: 2px solid var(--code-bg);
+}
+
+.lesson-content pre::-webkit-scrollbar-thumb:hover {
+  background: var(--code-scroll-thumb-hover);
 }
 
 .lesson-content code {
@@ -266,8 +344,8 @@ body.sidebar-hidden .sidebar {
 
 .lesson-content p code,
 .lesson-content li code {
-  background: #232a36;
-  border: 1px solid #344051;
+  background: var(--code-inline-bg);
+  border: 1px solid var(--code-inline-border);
   border-radius: 6px;
   padding: 1px 6px;
 }
@@ -291,9 +369,9 @@ body.sidebar-hidden .sidebar {
 .lesson-content blockquote {
   margin: 16px 0;
   padding: 8px 14px;
-  border-left: 3px solid #486089;
-  color: #c4d0e6;
-  background: #151b25;
+  border-left: 3px solid var(--blockquote-border);
+  color: var(--blockquote-ink);
+  background: var(--blockquote-bg);
 }
 
 .lesson-content img {

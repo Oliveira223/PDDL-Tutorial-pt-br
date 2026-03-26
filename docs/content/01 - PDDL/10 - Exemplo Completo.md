@@ -98,7 +98,7 @@ Note que:
 
 3) Adicione ao `:init` uma conexão que permita um plano em um único passo de `A` para `C`. Qual linha você adicionaria?
 
-### Gabarito sugerido (autoavaliação)
+### Gabarito sugerido
 1) A ausência de `(conectada A C)` e a pré-condição `(conectada ?de ?para)` na ação `mover`.  
 2) `(:goal (em robo B))`.  
 3) `(conectada A C)`.

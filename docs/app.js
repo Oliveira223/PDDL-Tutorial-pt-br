@@ -74,6 +74,7 @@ const breadcrumbEl = document.getElementById("breadcrumb");
 const contentEl = document.getElementById("lesson-content");
 const sidebar = document.getElementById("sidebar");
 const menuToggle = document.getElementById("menu-toggle");
+const themeToggle = document.getElementById("theme-toggle");
 const prevBtn = document.getElementById("prev-lesson");
 const nextBtn = document.getElementById("next-lesson");
 
@@ -323,10 +324,68 @@ function updateMenuButtonLabel() {
   menuToggle.setAttribute("title", hidden ? "Mostrar menu" : "Ocultar menu");
 }
 
+function setTheme(theme) {
+  const nextTheme = theme === "light" ? "light" : "dark";
+  document.body.classList.toggle("light-theme", nextTheme === "light");
+  saveTheme(nextTheme);
+  updateThemeButtonLabel();
+}
+
+function saveTheme(theme) {
+  try {
+    localStorage.setItem("theme", theme);
+  } catch (_error) {
+    // Ignore storage errors in restricted environments.
+  }
+}
+
+function getSavedTheme() {
+  try {
+    return localStorage.getItem("theme");
+  } catch (_error) {
+    return null;
+  }
+}
+
+function prefersLightTheme() {
+  try {
+    return Boolean(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches);
+  } catch (_error) {
+    return false;
+  }
+}
+
+function updateThemeButtonLabel() {
+  if (!themeToggle) {
+    return;
+  }
+  const isLight = document.body.classList.contains("light-theme");
+  themeToggle.textContent = isLight ? "☀" : "☾";
+  themeToggle.setAttribute("aria-label", isLight ? "Ativar modo escuro" : "Ativar modo claro");
+  themeToggle.setAttribute("title", isLight ? "Ativar modo escuro" : "Ativar modo claro");
+}
+
+function initializeTheme() {
+  const storedTheme = getSavedTheme();
+  if (storedTheme === "light" || storedTheme === "dark") {
+    setTheme(storedTheme);
+    return;
+  }
+
+  setTheme(prefersLightTheme() ? "light" : "dark");
+}
+
 if (menuToggle) {
   menuToggle.addEventListener("click", () => {
     document.body.classList.toggle("sidebar-hidden");
     updateMenuButtonLabel();
+  });
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const isLight = document.body.classList.contains("light-theme");
+    setTheme(isLight ? "dark" : "light");
   });
 }
 
@@ -343,5 +402,6 @@ window.addEventListener("resize", () => {
 });
 
 buildSidebar();
+initializeTheme();
 updateMenuButtonLabel();
 route();

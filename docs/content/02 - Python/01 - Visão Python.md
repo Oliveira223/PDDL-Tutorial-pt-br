@@ -85,13 +85,13 @@ source .venv/bin/activate
 ## 4.2) Dependências
 Neste ponto do curso, não vamos assumir bibliotecas específicas. Primeiro vamos aprender o fluxo com Python “puro” e, se necessário, introduzir um parser depois.
 
-# 5) Exercícios (leves)
+# 5) Exercícios
 
 1) Explique, em 2–4 linhas, qual parte do seu processo com PDDL hoje é mais repetitiva e como Python poderia ajudar.
 
 2) Esboce uma estrutura de pastas para um domínio com 20 problemas diferentes e a saída de seus planos.
 
-### Gabarito sugerido (autoavaliação)
+### Gabarito sugerido
 1) Resposta varia. O esperado é mencionar geração de instâncias, execução repetida do planner, coleta de planos/logs e comparação de resultados.  
 2) Exemplo: `domain.pddl`, `problems/`, `plans/`, `runs/` (ou similar), com nomes consistentes.
 

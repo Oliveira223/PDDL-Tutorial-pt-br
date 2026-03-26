@@ -137,7 +137,7 @@ must_contain(text, "(:action mover")
 
 3) Gere dois domínios: um com `:typing` e outro sem tipos. Quais mudanças você precisou fazer?
 
-### Gabarito sugerido (autoavaliação)
+### Gabarito sugerido
 1) Deve adicionar um `Predicate("bloqueada", "?s - lugar")` na lista.  
 2) Uma ação com `:effect (bloqueada ?s)` e pré-condição mínima (por exemplo, `(em ?a ?s)` se você quiser restringir).  
 3) Sem tipos, você remove `:typing`, remove `:types` e remove as anotações `- tipo` dos parâmetros e predicados.
