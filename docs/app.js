@@ -69,7 +69,7 @@ const curriculum = [
 ];
 
 const nav = document.getElementById("lesson-nav");
-const titleEl = document.getElementById("lesson-title");
+const topTitleEl = document.getElementById("top-lesson-title");
 const breadcrumbEl = document.getElementById("breadcrumb");
 const contentEl = document.getElementById("lesson-content");
 const sidebar = document.getElementById("sidebar");
@@ -78,11 +78,16 @@ const prevBtn = document.getElementById("prev-lesson");
 const nextBtn = document.getElementById("next-lesson");
 
 const flatLessons = [];
+const lessonLookup = new Map();
 
 for (const group of curriculum) {
   group.lessons.forEach((lesson) => {
     flatLessons.push({ ...lesson, section: group.section, id: slugify(`${group.section}-${lesson.title}`) });
   });
+}
+
+for (const lesson of flatLessons) {
+  registerLessonLookupKeys(lesson);
 }
 
 function slugify(value) {
@@ -92,6 +97,70 @@ function slugify(value) {
     .replace(/\p{Diacritic}/gu, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+function normalizeKey(value) {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function registerKey(key, lessonId) {
+  const normalized = normalizeKey(key);
+  if (!normalized || lessonLookup.has(normalized)) {
+    return;
+  }
+  lessonLookup.set(normalized, lessonId);
+}
+
+function registerLessonLookupKeys(lesson) {
+  const pathWithoutPrefix = lesson.path.replace(/^content\//, "");
+  const pathWithoutExt = pathWithoutPrefix.replace(/\.md$/i, "");
+  const segments = pathWithoutExt.split("/");
+  const basename = segments[segments.length - 1] || "";
+  registerKey(lesson.title, lesson.id);
+  registerKey(pathWithoutPrefix, lesson.id);
+  registerKey(pathWithoutExt, lesson.id);
+  registerKey(basename, lesson.id);
+}
+
+function resolveWikiTarget(rawTarget) {
+  const target = rawTarget.trim();
+  if (!target) {
+    return null;
+  }
+
+  const candidates = [
+    target,
+    target.replace(/^\.\//, ""),
+    target.replace(/^content\//, ""),
+    target.replace(/\.md$/i, ""),
+    `${target}.md`,
+    `content/${target}`,
+    `content/${target}.md`
+  ];
+
+  for (const candidate of candidates) {
+    const found = lessonLookup.get(normalizeKey(candidate));
+    if (found) {
+      return found;
+    }
+  }
+  return null;
+}
+
+function convertWikiLinks(markdown) {
+  return markdown.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (_, rawTarget, rawLabel) => {
+    const lessonId = resolveWikiTarget(rawTarget);
+    const label = (rawLabel || rawTarget).trim();
+    if (!lessonId) {
+      return label;
+    }
+    return `[${label}](#/aula/${lessonId})`;
+  });
 }
 
 function buildSidebar() {
@@ -161,6 +230,11 @@ function configureMarked(basePath) {
     const url = resolveAssetPath(basePath, href);
     const encoded = encodeURI(url);
     const titleAttr = title ? ` title="${title}"` : "";
+    const isInternalLesson = encoded.startsWith("#/aula/");
+    const isPageAnchor = encoded.startsWith("#") && !isInternalLesson;
+    if (isInternalLesson || isPageAnchor) {
+      return `<a href="${encoded}"${titleAttr}>${text}</a>`;
+    }
     return `<a href="${encoded}"${titleAttr} target="_blank" rel="noreferrer">${text}</a>`;
   };
 
@@ -184,7 +258,9 @@ async function loadLessonById(id) {
     return;
   }
 
-  titleEl.textContent = lesson.title;
+  if (topTitleEl) {
+    topTitleEl.textContent = lesson.title;
+  }
   breadcrumbEl.textContent = `${lesson.section} / Aula`;
 
   document.querySelectorAll(".lesson-link").forEach((item) => {
@@ -217,7 +293,8 @@ async function loadLessonById(id) {
       throw new Error(`Erro ao carregar ${lesson.path}`);
     }
     const markdown = await response.text();
-    contentEl.innerHTML = marked.parse(markdown);
+    const markdownWithLinks = convertWikiLinks(markdown);
+    contentEl.innerHTML = marked.parse(markdownWithLinks);
     window.scrollTo({ top: 0, behavior: "smooth" });
   } catch (error) {
     contentEl.innerHTML = `<p>Falha ao carregar a aula.</p><pre>${error.message}</pre>`;
@@ -232,16 +309,39 @@ function route() {
 
 function closeSidebarOnMobile() {
   if (window.innerWidth <= 980) {
-    sidebar.classList.remove("open");
+    document.body.classList.add("sidebar-hidden");
+    updateMenuButtonLabel();
   }
 }
 
-menuToggle.addEventListener("click", () => {
-  sidebar.classList.toggle("open");
-});
+function updateMenuButtonLabel() {
+  if (!menuToggle) {
+    return;
+  }
+  const hidden = document.body.classList.contains("sidebar-hidden");
+  menuToggle.setAttribute("aria-label", hidden ? "Mostrar menu" : "Ocultar menu");
+  menuToggle.setAttribute("title", hidden ? "Mostrar menu" : "Ocultar menu");
+}
+
+if (menuToggle) {
+  menuToggle.addEventListener("click", () => {
+    document.body.classList.toggle("sidebar-hidden");
+    updateMenuButtonLabel();
+  });
+}
+
+if (window.innerWidth <= 980) {
+  document.body.classList.add("sidebar-hidden");
+}
 
 window.addEventListener("hashchange", route);
-window.addEventListener("resize", closeSidebarOnMobile);
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 980) {
+    document.body.classList.remove("sidebar-hidden");
+  }
+  updateMenuButtonLabel();
+});
 
 buildSidebar();
+updateMenuButtonLabel();
 route();

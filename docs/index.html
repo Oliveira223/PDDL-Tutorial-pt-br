@@ -7,23 +7,13 @@
     <meta name="description" content="Tutorial de PDDL em formato de aulas com sumario lateral e navegacao didatica." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Serif:opsz,wght@8..144,400;8..144,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="bg-shapes" aria-hidden="true">
-      <span class="shape shape-a"></span>
-      <span class="shape shape-b"></span>
-      <span class="shape shape-c"></span>
-    </div>
-
     <header class="topbar">
-      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu de aulas">Aulas</button>
-      <div class="brand">
-        <p class="eyebrow">Curso interativo</p>
-        <h1>PDDL Tutorial pt-br</h1>
-      </div>
-      <a class="repo-link" href="content/README.md" target="_blank" rel="noreferrer">Ver fonte</a>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Alternar menu lateral" title="Abrir ou fechar menu">☰</button>
+      <h1 id="top-lesson-title" class="top-lesson-title">Carregando aula...</h1>
     </header>
 
     <div class="layout">
@@ -38,7 +28,6 @@
       <main class="content">
         <section class="lesson-header">
           <p id="breadcrumb" class="breadcrumb"></p>
-          <h2 id="lesson-title">Carregando aula...</h2>
           <div class="lesson-actions">
             <button id="prev-lesson" class="ghost-btn">Aula anterior</button>
             <button id="next-lesson" class="ghost-btn">Proxima aula</button>
