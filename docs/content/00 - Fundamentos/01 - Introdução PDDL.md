@@ -23,6 +23,12 @@ Um planner tenta encontrar um plano que satisfaça o objetivo:
 
 Estado inicial → (ação 1) → (ação 2) → … → (ação n) → Objetivo
 
+## Vocabulário Inicial
+- **Plano**: uma sequência de ações (por exemplo: `mover`, depois `pegar`, depois `entregar`) que atinge o objetivo.
+- **Planner**: o programa/algoritmo que recebe domínio+problema e tenta encontrar um plano.
+- **Fato**: uma afirmação sobre o mundo que pode ser verdadeira ou falsa (por exemplo: “o robô está na sala A”).
+- **Predicado**: o “nome” do fato no PDDL, possivelmente com argumentos (por exemplo: `(em robo A)`, `(conectada A B)`).
+
 # PDDL vs Programação Tradicional
 
 | **PDDL**                    | **Programação Tradicional**      |
@@ -43,7 +49,7 @@ O trecho abaixo ilustra a ideia de uma ação em PDDL. Ele não é um domínio c
 ```
 
 - `:parameters` declara variáveis que serão instanciadas pelo planner (por exemplo, `?de = A` e `?para = B`).
-- `:precondition (em ?de)` diz que a ação só pode ocorrer se o agente estiver em `?de`.
+- `:precondition (em ?de)` diz que a ação só pode ocorrer se o fato `(em ?de)` for verdadeiro (isto é, se o agente estiver em `?de`).
 - `:effect` diz que, após executar, o agente deixa de estar em `?de` e passa a estar em `?para`.
 
 # Conclusão
@@ -76,14 +82,14 @@ Nesta etapa, o objetivo não é “codificar” PDDL, e sim consolidar o racioc�
 
 2) Marque V (verdadeiro) ou F (falso):
 - ( ) Em PDDL, eu descrevo um algoritmo passo a passo.
-- ( ) Um planner tenta encontrar uma sequência de ações para atingir o objetivo.
+- ( ) Um planner (programa que resolve o problema) tenta encontrar uma sequência de ações para atingir o objetivo.
 - ( ) Em uma ação, efeitos descrevem o que muda no mundo.
 
 ### Parte B — Modelagem mínima
 
-3) Proponha dois predicados (nomes e significado) úteis para o cenário do robô e das salas.
+3) Proponha dois fatos que você gostaria de representar no cenário do exercicio 1 e escreva como predicados (nome e significado).
 
-4) Escreva uma versão de `mover` que exija conexão entre salas (pode usar o modelo do exemplo).
+4) Escreva uma versão de `mover` (usada como exemplo anteriormente)que exija conexão entre salas (pode usar o modelo do exemplo).
 
 ### Gabarito sugerido
 1) Estado inicial: “robô em A”; objetivo: “robô em B”; ação plausível: “mover de A para B (se for permitido)”.  

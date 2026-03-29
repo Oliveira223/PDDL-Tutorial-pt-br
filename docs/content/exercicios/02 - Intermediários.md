@@ -13,7 +13,7 @@ Esta prova é a “mão na massa” que consolida o módulo `01 - PDDL` antes de
 
 ---
 
-# Parte A — Modelagem do domínio (obrigatória)
+# Parte A — Modelagem do domínio
 
 ## Cenário: “Entrega com chave”
 
@@ -108,8 +108,6 @@ Você está pronto para `02 - Python` se conseguir:
 - corrigir um erro simples sem “chutar” (usando diagnóstico)
 
 # Gabarito
-
-> [!important] Antes de olhar
 > Só consulte esta seção depois de tentar montar o domínio e os dois problemas. A prova é para consolidar modelagem e depuração.
 
 ## Parte A — Um domínio de referência (uma solução possível)

@@ -171,4 +171,4 @@ for pr in problems:
 [[04 - Manipulação de Problemas]]
 
 ### -> Próxima aula
-Retome em `03 - Planners` para escolher e configurar um planner real.
+[[06 - Ambiente para Planners Locais]]

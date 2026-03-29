@@ -10,33 +10,36 @@ const curriculum = [
   {
     section: "00 - Fundamentos",
     lessons: [
-      { title: "Introducao ao PDDL", path: "content/00 - Fundamentos/01 - Introdução PDDL.md" },
+      { title: "Introdução ao PDDL", path: "content/00 - Fundamentos/01 - Introdução PDDL.md" },
       { title: "Paradigma declarativo", path: "content/00 - Fundamentos/02 - Paradigma Declarativo.md" }
     ]
   },
   {
     section: "01 - PDDL",
     lessons: [
-      { title: "Visao geral", path: "content/01 - PDDL/01 - Visão Geral.md" },
+      { title: "Visão Geral", path: "content/01 - PDDL/01 - Visão Geral.md" },
       { title: "Estrutura do dominio", path: "content/01 - PDDL/02 - Estrutura do Domínio.md" },
       { title: "Estrutura do problema", path: "content/01 - PDDL/03 - Problem Estrutura.md" },
       { title: "Predicados", path: "content/01 - PDDL/04 - Predicados.md" },
-      { title: "Acoes", path: "content/01 - PDDL/05 - Ações.md" },
-      { title: "Pre-condicoes", path: "content/01 - PDDL/06 - Pré-condições.md" },
+      { title: "Ações", path: "content/01 - PDDL/05 - Ações.md" },
+      { title: "Pré-condições", path: "content/01 - PDDL/06 - Pré-condições.md" },
       { title: "Efeitos", path: "content/01 - PDDL/07 - Efeitos.md" },
       { title: "Tipos", path: "content/01 - PDDL/08 - Tipos.md" },
-      { title: "Restricoes", path: "content/01 - PDDL/09 - Restrições.md" },
-      { title: "Exemplo completo", path: "content/01 - PDDL/10 - Exemplo Completo.md" }
+      { title: "Restrições", path: "content/01 - PDDL/09 - Restrições.md" },
+      { title: "Exemplo", path: "content/01 - PDDL/10 - Exemplo Completo.md" }
     ]
   },
   {
     section: "02 - Python",
     lessons: [
-      { title: "Visao Python", path: "content/02 - Python/01 - Visão Python.md" },
+      { title: "Visão Python", path: "content/02 - Python/01 - Visão Python.md" },
       { title: "Leitura de PDDL", path: "content/02 - Python/02 - Leitura PDDL.md" },
-      { title: "Criacao de dominios", path: "content/02 - Python/03 - Criação de Domínios.md" },
-      { title: "Manipulacao de problemas", path: "content/02 - Python/04 - Manipulação de Problemas.md" },
-      { title: "Integracao com planner", path: "content/02 - Python/05 - Integração com Planner.md" }
+      { title: "Criação de dominios", path: "content/02 - Python/03 - Criação de Domínios.md" },
+      { title: "Manipulação de problemas", path: "content/02 - Python/04 - Manipulação de Problemas.md" },
+      { title: "Integrção com planner", path: "content/02 - Python/05 - Integração com Planner.md" },
+      { title: "Ambiente para planners locais", path: "content/02 - Python/06 - Ambiente para Planners Locais.md" },
+      { title: "Runner real (Fast Downward e alternativas)", path: "content/02 - Python/07 - Runner real (Fast Downward e alternativas).md" },
+      { title: "Parsing e validacao de planos", path: "content/02 - Python/08 - Parsing e validação de planos.md" }
     ]
   },
   {
@@ -56,6 +59,16 @@ const curriculum = [
       { title: "Projeto Grid Navegacao", path: "content/04 - Projetos/02 - Grid Navegação.md" },
       { title: "Projeto Logistica", path: "content/04 - Projetos/03 - Logística.md" },
       { title: "Projeto final", path: "content/04 - Projetos/04 - Projeto Final.md" }
+    ]
+  },
+  {
+    section: "05 - PDDL Avançado (Opcional)",
+    lessons: [
+      { title: "Ações durativas (PDDL 2.1)", path: "content/05 - PDDL Avançado/01 - Ações Durativas (PDDL 2.1).md" },
+      { title: "Fluents numéricos e métrica", path: "content/05 - PDDL Avançado/02 - Fluents Numéricos e Métrica.md" },
+      { title: "Efeitos condicionais e quantificadores", path: "content/05 - PDDL Avançado/03 - Efeitos Condicionais e Quantificadores.md" },
+      { title: "Compatibilidade de planners e requirements", path: "content/05 - PDDL Avançado/04 - Compatibilidade de Planners e requirements.md" },
+      { title: "Mini-projeto avançado", path: "content/05 - PDDL Avançado/05 - Mini-projeto (Tempo, bateria e custo).md" }
     ]
   },
   {
@@ -289,7 +302,10 @@ async function loadLessonById(id) {
 
   try {
     configureMarked(lesson.path);
-    const response = await fetch(encodeURI(lesson.path));
+    const isLocalhost = ["localhost", "127.0.0.1"].includes(location.hostname);
+    const cacheBuster = isLocalhost ? `?v=${Date.now()}` : "";
+    const url = encodeURI(`${lesson.path}${cacheBuster}`);
+    const response = await fetch(url, isLocalhost ? { cache: "no-store" } : undefined);
     if (!response.ok) {
       throw new Error(`Erro ao carregar ${lesson.path}`);
     }

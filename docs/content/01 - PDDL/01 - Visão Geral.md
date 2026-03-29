@@ -1,4 +1,4 @@
-﻿﻿﻿# Visão Geral do PDDL
+﻿﻿# Visão Geral do PDDL
 
 Em PDDL, um problema de planejamento é descrito por meio de **duas estruturas principais**: o **domínio** e o **problema**. Essa separação permite modelar as regras gerais de um ambiente de forma independente de situações específicas.
 
@@ -23,6 +23,7 @@ O domínio descreve as **regras gerais do ambiente**. Ele define:
 - As **ações possíveis**
 - As **condições** para execução dessas ações
 - Os **efeitos** gerados por elas
+
 Em outras palavras, o domínio representa tudo aquilo que é **válido em qualquer situação daquele sistema**.
 Abordaremos mais profundamente esse assunto na aula [[02 - Estrutura do Domínio]].
 ### -> Problema
@@ -30,6 +31,7 @@ O problema descreve uma **instância específica** do domínio. Ele define:
 - O **estado inicial** do sistema
 - Os **objetos envolvidos**
 - O **objetivo (goal)** a ser alcançado
+
 Cada problema utiliza um domínio previamente definido.
 Abordaremos mais profundamente esse assunto na aula [[03 - Problem Estrutura|03 - Estrutura do Problema]].
 

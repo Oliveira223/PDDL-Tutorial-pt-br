@@ -108,6 +108,13 @@ Se você chegou até aqui, concluiu o módulo básico de PDDL. Antes de seguir p
 - [[exercicios/01 - Básicos]]
 - [[exercicios/02 - Intermediários]]
 
+---
+
+### Desafio Recomendado
+Agora é o momento ideal para realizar o:
+- **[[04 - Projetos/01 - Blocksworld]]**
+Este projeto consolida tudo o que você aprendeu sobre ações, efeitos e pré-condições clássicas.
+
 ### <- Aula anterior
 [[09 - Restrições]]
 

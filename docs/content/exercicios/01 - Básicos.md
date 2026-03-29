@@ -8,6 +8,9 @@ Este conjunto de exercícios serve para consolidar o “ciclo completo” do pla
 
 ## Pré-requisitos
 - Ter concluído o módulo `01 - PDDL` até `10 - Exemplo Completo`.
+- Para executar em planner local (Opção 2), recomenda-se também:
+  - `02 - Python/06 - Ambiente para Planners Locais` e `02 - Python/07 - Runner real (Fast Downward e alternativas)`, ou
+  - `03 - Planners/04 - Fast Downward` (operação prática).
 
 ---
 
@@ -90,9 +93,7 @@ Qual linha você adicionaria no `:init`?
 
 ---
 
-# Gabarito (autoavaliação)
-
-> [!important] Antes de olhar
+# Gabarito
 > Só consulte esta seção depois de tentar montar `domain.pddl` e `problem.pddl`. A intenção é você praticar a modelagem e identificar sozinho onde cada bloco entra.
 
 ## Parte A

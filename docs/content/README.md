@@ -6,6 +6,7 @@ Este curso está organizado como uma trilha progressiva:
 - **02 - Python**: automação (ler/gerar PDDL, montar instâncias, integrar com planner).
 - **03 - Planners**: como planners funcionam, algoritmos e heurísticas (para entender resultados).
 - **04 - Projetos**: estudos de caso (domínios completos e variações).
+- **05 - PDDL Avançado (Opcional)**: extensões comuns (tempo, numéricos, otimização) e compatibilidade.
 - **exemplos**: arquivos de referência para testar planejamento.
 - **exercicios**: listas de atividades guiadas e desafios.
 
@@ -15,7 +16,10 @@ Este curso está organizado como uma trilha progressiva:
 
 ## Como estudar (ordem sugerida)
 
-### Trilha principal (PDDL básico)
+O curso pode ser seguido como uma trilha única, mas para reduzir “saltos grandes” ele também oferece trilhas explícitas por objetivo.
+
+### Trilha 1 — Essencial (planejamento + PDDL básico)
+Objetivo: aprender a modelar domínios/problemas e entender planos.
 1) `00 - Fundamentos/01 - Introdução PDDL`
 2) `00 - Fundamentos/02 - Paradigma Declarativo`
 3) `01 - PDDL/01 - Visão Geral`
@@ -29,10 +33,32 @@ Este curso está organizado como uma trilha progressiva:
 11) `01 - PDDL/09 - Restrições`
 12) `01 - PDDL/10 - Exemplo Completo`
 
-### Próximos módulos (o “depois do básico”)
-- **02 - Python**: transformar o que você modelou em PDDL em um fluxo automatizado (gerar arquivos, validar, executar planners e interpretar planos).
-- **03 - Planners**: entender por que um planner encontra (ou não encontra) planos, e como heurísticas afetam desempenho.
-- **04 - Projetos**: aplicar em domínios clássicos (Blocksworld, Grid, Logística) e aprender padrões de modelagem.
+### Trilha 2 — Automação (Python)
+Objetivo: transformar PDDL em um fluxo repetível e automatizado.
+1) `02 - Python/01 - Visão Python`
+2) `02 - Python/02 - Leitura PDDL`
+3) `02 - Python/03 - Criação de Domínios`
+4) `02 - Python/04 - Manipulação de Problemas`
+5) `02 - Python/05 - Integração com Planner`
+6) `02 - Python/06 - Ambiente para Planners Locais`
+7) `02 - Python/07 - Runner real (Fast Downward e alternativas)`
+8) `02 - Python/08 - Parsing e validação de planos`
+
+### Trilha 3 — Operação e diagnóstico (Planners)
+Objetivo: operar planners com segurança e depurar quando falhar.
+1) `03 - Planners/01 - Visão Planners`
+2) `03 - Planners/02 - Algoritmos de Busca`
+3) `03 - Planners/03 - Heurísticas`
+4) `03 - Planners/04 - Fast Downward`
+5) `03 - Planners/05 - Debug de Planejamento`
+
+### Trilha 4 — Projetos (aplicação)
+Objetivo: consolidar modelagem em domínios completos.
+- `04 - Projetos/*` (Blocksworld, Grid, Logística, Projeto Final)
+
+### Trilha 5 — Avançada (opcional)
+Objetivo: aprender extensões comuns e compatibilidade entre planners.
+- `05 - PDDL Avançado/*` (tempo, fluents numéricos, métrica, efeitos condicionais, quantificação)
 
 ## Ambiente (opções)
 

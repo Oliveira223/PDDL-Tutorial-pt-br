@@ -106,7 +106,7 @@ Exemplos:
 
 Eles são equivalentes? Em quais situações o uso de `and` deixa de ser opcional?
 
-### Gabarito sugerid
+### Gabarito sugerido
 1) Predicado; fato; predicado.  
 2) 1; 2; 2.  
 3) Sim, são equivalentes quando há apenas uma condição. `and` deixa de ser opcional quando você precisa exigir duas ou mais condições ao mesmo tempo, por exemplo: `(:goal (and (em B) (outra-condicao)))`.
